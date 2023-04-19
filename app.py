@@ -1,11 +1,13 @@
 # importing required modules
 from PyPDF2 import PdfReader
+
+file_name = 'pdf/icagruppen-arsredovisning-2021.pdf'
  
-# creating a pdf reader object
-reader = PdfReader('pdf/icagruppen-arsredovisning-2021.pdf')
+# Creating a PDF reader object
+reader = PdfReader(file_name)
  
-# printing number of pages in pdf file
-print('\nPages:', len(reader.pages))
+print('\nPDF file:', file_name)
+print('Pages:', len(reader.pages))
 
 # creating a text variable to store the text extracted from the pdf
 all_text = ''

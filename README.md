@@ -10,6 +10,7 @@
 
     % python3 app.py
 
+    PDF file: pdf/icagruppen-arsredovisning-2021.pdf
     Pages: 139
     Length: 510661
 
