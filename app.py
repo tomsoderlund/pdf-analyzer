@@ -1,5 +1,6 @@
 # importing required modules
 from PyPDF2 import PdfReader
+import nltk
 
 file_name = 'pdf/icagruppen-arsredovisning-2021.pdf'
  
@@ -19,8 +20,15 @@ for page in reader.pages:
 print('Length:', len(all_text))
 
 # Print all lines of text that contains the word "scope" (case insensitive)
-print('\nFinding “scope”:\n———————————————————————')
+SEARCH_TERM = 'scope'
+interesting_text = ''
 for line in all_text.splitlines():
-  if 'scope' in line.lower():
-    print(line)
-print('———————————————————————')
+  if SEARCH_TERM in line.lower():
+    interesting_text += line + '\n'
+print('\nFinding “', SEARCH_TERM, '”:\n———————————————————————\n', interesting_text, '———————————————————————\n')
+
+# Split the text into sentences and tokenize each sentence into words
+nltk.download('punkt')
+sentences = nltk.sent_tokenize(interesting_text)
+tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
+print(tokenized_sentences)
