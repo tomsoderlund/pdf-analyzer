@@ -3,6 +3,9 @@ from PyPDF2 import PdfReader
 import nltk
 from sklearn.model_selection import train_test_split
 
+from string_helpers import preprocess_numbers
+import dummy_values
+
 file_name = 'pdf/icagruppen-arsredovisning-2021.pdf'
  
 # Creating a PDF reader object
@@ -28,9 +31,14 @@ for line in all_text.splitlines():
     interesting_text += line + '\n'
 print('\nFinding “', SEARCH_TERM, '”:\n———————————————————————\n', interesting_text, '———————————————————————\n')
 
+#interesting_text = dummy_values.interesting_text
+
+# Remove spaces as thousand separators
+interesting_text_numbers = preprocess_numbers(interesting_text)
+
 # Split the text into sentences and tokenize each sentence into words
 nltk.download('punkt')
-sentences = nltk.sent_tokenize(interesting_text)
+sentences = nltk.sent_tokenize(interesting_text_numbers)
 tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
 #print(tokenized_sentences)
 
