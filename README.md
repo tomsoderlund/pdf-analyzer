@@ -42,6 +42,21 @@
     faktorer från GHG Protokollets verktyg ”Scope 3 Evaluator” 
     ———————————————————————
 
+## Setting up
+
+	# Create and activate a “safe” virtual Python environment (exit with command “deactivate”)
+	python3 -m venv env && source env/bin/activate
+	
+	# Install a package
+	pip3 install [package]
+	
+	# Update the list of required packages (do this every time you add packages)
+	pip3 freeze > requirements.txt
+
+### Run
+
+	python3 app.py
+
 ## ChatGPT
 
 	I want to build an AI/ML tool that:
