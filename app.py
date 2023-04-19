@@ -1,6 +1,7 @@
 # importing required modules
 from PyPDF2 import PdfReader
 import nltk
+from sklearn.model_selection import train_test_split
 
 file_name = 'pdf/icagruppen-arsredovisning-2021.pdf'
  
@@ -31,4 +32,8 @@ print('\nFinding “', SEARCH_TERM, '”:\n————————————�
 nltk.download('punkt')
 sentences = nltk.sent_tokenize(interesting_text)
 tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
-print(tokenized_sentences)
+#print(tokenized_sentences)
+
+# Divide the tokenized sentences into training and validation sets
+training_sentences, validation_sentences, training_labels, validation_labels = train_test_split(tokenized_sentences, [0] * len(tokenized_sentences), test_size=0.25, random_state=1000)
+print([training_sentences, validation_sentences, training_labels, validation_labels])
