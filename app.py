@@ -1,37 +1,15 @@
-# importing required modules
-from PyPDF2 import PdfReader
 import nltk
 from sklearn.model_selection import train_test_split
 
+from pdf_text import get_interesting_text_from_pdf
 from string_helpers import preprocess_numbers
 import dummy_values
 
 file_name = 'pdf/icagruppen-arsredovisning-2021.pdf'
- 
-# Creating a PDF reader object
-reader = PdfReader(file_name)
- 
-print('\nPDF file:', file_name)
-print('Pages:', len(reader.pages))
-
-# creating a text variable to store the text extracted from the pdf
-all_text = ''
-# extracting text from each page
-for page in reader.pages:
-  all_text += page.extract_text()
-
-# Print length
-print('Length:', len(all_text))
-
-# Print all lines of text that contains the word "scope" (case insensitive)
-SEARCH_TERM = 'scope'
-interesting_text = ''
-for line in all_text.splitlines():
-  if SEARCH_TERM in line.lower():
-    interesting_text += line + '\n'
-print('\nFinding “', SEARCH_TERM, '”:\n———————————————————————\n', interesting_text, '———————————————————————\n')
+search_term = 'scope'
 
 #interesting_text = dummy_values.interesting_text
+interesting_text = get_interesting_text_from_pdf(file_name, search_term)
 
 # Remove spaces as thousand separators
 interesting_text_numbers = preprocess_numbers(interesting_text)
