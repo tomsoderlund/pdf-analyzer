@@ -5,11 +5,20 @@ from PyPDF2 import PdfReader
 reader = PdfReader('pdf/icagruppen-arsredovisning-2021.pdf')
  
 # printing number of pages in pdf file
-print(len(reader.pages))
- 
-# getting a specific page from the pdf file
-page = reader.pages[125 - 1]
- 
-# extracting text from page
-text = page.extract_text()
-print(text)
+print('\nPages:', len(reader.pages))
+
+# creating a text variable to store the text extracted from the pdf
+all_text = ''
+# extracting text from each page
+for page in reader.pages:
+  all_text += page.extract_text()
+
+# Print length
+print('Length:', len(all_text))
+
+# Print all lines of text that contains the word "scope" (case insensitive)
+print('\nFinding “scope”:\n———————————————————————')
+for line in all_text.splitlines():
+  if 'scope' in line.lower():
+    print(line)
+print('———————————————————————')
